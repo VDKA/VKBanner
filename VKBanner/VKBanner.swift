@@ -67,7 +67,7 @@ public protocol VKBannerManagerDelegate {
 }
 
 public class VKBannerManager: VKBannerManagerDelegate {
-	static let sharedManager = VKBannerManager()
+	public static let sharedManager = VKBannerManager()
 	
 	private init() {}
 	

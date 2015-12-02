@@ -3,13 +3,13 @@
 //  VKNotification
 //
 //  Created by Ethan Jackwitz on 1/12/2015.
-//  Copyright © 2015 Ethan Jackwitz. All rights reserved.
 //
 
 import UIKit
 import EZSwiftExtensions
 
-public enum VKBannerStyle {
+@objc
+public enum VKBannerStyle: Int {
 	case Success
 	case Info
 	case Warning

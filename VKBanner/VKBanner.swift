@@ -65,6 +65,42 @@ public protocol VKBannerManagerDelegate {
 	func remove(banner: VKBanner)
 }
 
+public protocol VKNewBM: VKBannerManagerDelegate {
+	private var banners: [VKBanner] { get set }
+
+	public var bannerConfiguration: VKBannerConfiguration { get set }
+	public var bannerAnimationConfiguration: VKAnimationConfiguration { get set }
+
+	func showBanner(title: String, style: VKBannerStyle, dismisal: VKDismissal
+}
+
+public extension VKNewBM {
+
+	public func show(banner: VKBanner, inView view: UIView) {
+		banners.forEach({ $0.move(.Up) })
+		
+		view.addSubview(banner)
+		banner.manager = self
+		banner.show()
+		
+		banners.append(banner)
+	}
+	
+	public func hide(banner: VKBanner, after: Double) {
+		guard let bannerIndex = banners.indexOf(banner) else { fatalError() }
+
+		banners[0..<bannerIndex].forEach({ $0.move(.Down, delay: after) })
+		banner.hide(delay: after)
+	}
+	
+	public func remove(banner: VKBanner) {
+		guard let bannerIndex = banners.indexOf(banner) else { fatalError() }
+		banners.removeAtIndex(bannerIndex)
+
+
+	}
+}
+
 public class VKBannerManager: VKBannerManagerDelegate {
 	public static let sharedManager = VKBannerManager()
 	

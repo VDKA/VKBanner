@@ -11,6 +11,11 @@ import VKBanner
 
 class ViewController: UIViewController {
 
+	let bannerFactory: VKNewBM = {
+		//Perform config
+	}()
+
+
 	@IBAction func didPressSuccess(sender: AnyObject) {
 		let banner = VKBanner(title: "Some Success Message", style: .Success)
 		VKBannerManager.sharedManager.show(banner, inView: self.view)

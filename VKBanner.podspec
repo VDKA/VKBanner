@@ -11,6 +11,5 @@ Pod::Spec.new do |s|
   s.source_files 		= "VKBanner/*.swift"
   s.framework 			= 'UIKit'
   s.requires_arc 		= true
-  s.dependency  		  'EZSwiftExtensions'
 end
 

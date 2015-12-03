@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import EZSwiftExtensions
 
 @objc
 public enum VKBannerStyle: Int {
@@ -84,14 +83,17 @@ public class VKBannerManager: VKBannerManagerDelegate {
 	}
 	
 	public func hide(banner: VKBanner, after: Double) {
-		guard let bannerIndex = banners.indexOfObject(banner) else { fatalError() }
-		
+		guard let bannerIndex = banners.indexOf(banner) else { fatalError() }
+
 		banners[0..<bannerIndex].forEach({ $0.move(.Down, delay: after) })
 		banner.hide(delay: after)
 	}
 	
 	public func remove(banner: VKBanner) {
-		banners.removeObject(banner)
+		guard let bannerIndex = banners.indexOf(banner) else { fatalError() }
+		banners.removeAtIndex(bannerIndex)
+
+
 	}
 	
 	
